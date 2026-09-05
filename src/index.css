@@ -1,11 +1,10 @@
-/*
-  WIND — Katrina Rose Wind
-  Identity: saturated cobalt blue + deep black + pure white.
-  Blue reference: #0814AE (sampled from brand colour board).
-*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
@@ -19,18 +18,13 @@ body {
   color: hsl(var(--wind-white));
 }
 
-/*
-  ---break---
-*/
-
 @layer base {
   :root {
-    /* WIND — saturated cobalt / black / white */
-    --wind-blue: 236 91% 36%;      /* #0814AE — intense cobalt/electric blue */
-    --wind-black: 0 0% 0%;         /* pure deep black */
-    --wind-white: 0 0% 100%;       /* pure white */
-    --wind-pale: 0 0% 100%;        /* alias to white — no cream/off-white */
-
+    --wind-blue: 236 91% 36%;
+    --wind-black: 0 0% 0%;
+    --wind-orange: 25 100% 40%; /* #CC5500 */
+    --wind-white: 0 0% 100%;
+    --wind-pale: 0 0% 100%;
     --background: 0 0% 100%;
     --foreground: 0 0% 0%;
     --card: 0 0% 100%;
@@ -60,70 +54,31 @@ body {
     --sidebar-border: 0 0% 0%;
     --sidebar-ring: 236 91% 36%;
   }
-  .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 236 91% 36%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 236 91% 36%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 100%;
-    --input: 0 0% 100%;
-    --ring: 236 91% 36%;
-    --sidebar-background: 0 0% 0%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 0 0% 0%;
-    --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 100%;
-    --sidebar-ring: 236 91% 36%;
-  }
 }
 
-/* Outlined display type (footer wordmark) */
 .wind-outline {
   color: transparent;
-  -webkit-text-stroke: 1.5px hsl(0 0% 100% / 0.85);
+  -webkit-text-stroke: 1.5px hsl(var(--wind-orange));
 }
 
-/* Hand-drawn marker underline */
 .marker-underline {
-  background-image: linear-gradient(
-    to right,
-    hsl(var(--foreground)) 0%,
-    hsl(var(--foreground)) 100%
-  );
+  background-image: linear-gradient(to right, hsl(var(--foreground)) 0%, hsl(var(--foreground)) 100%);
   background-repeat: no-repeat;
   background-size: 100% 0.14em;
   background-position: 0 92%;
 }
 
-/* Marquee */
 @keyframes wind-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.animate-wind-marquee {
-  animation: wind-marquee 26s linear infinite;
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
+.animate-wind-marquee { animation: wind-marquee 26s linear infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-wind-marquee {
-    animation: none;
-  }
+  html { scroll-behavior: auto; }
+  .animate-wind-marquee { animation: none; }
 }
+
+/* Case-study artwork: show the full source image rather than cropping it into a fixed ratio. */
+.case-study-image { width: 100%; height: auto; max-height: 75vh; object-fit: contain; display: block; }

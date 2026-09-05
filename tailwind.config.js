@@ -18,12 +18,14 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: ['Archivo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				poppins: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				display: ['"Archivo Black"', 'Archivo', 'ui-sans-serif', 'sans-serif'],
 			},
 			colors: {
 				wind: {
 					blue: 'hsl(var(--wind-blue))',
 					black: 'hsl(var(--wind-black))',
+				orange: 'hsl(var(--wind-orange))',
 					white: 'hsl(var(--wind-white))',
 					pale: 'hsl(var(--wind-pale))',
 				},
