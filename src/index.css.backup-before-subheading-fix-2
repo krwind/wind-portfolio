@@ -92,16 +92,3 @@ body {
   text-transform: uppercase;
   color: #ffffff;
 }
-
-
-/* PROJECT CARD SUBHEADING */
-.project-card-subheading {
-  font-size: clamp(12px, 0.85vw, 15px);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #ffffff;
-  text-shadow: none;
-}
-/* PROJECT CARD SUBHEADING END */

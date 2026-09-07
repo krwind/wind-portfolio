@@ -119,8 +119,8 @@ function Hero() {
     <section id="top" className="flex min-h-[100dvh] flex-col bg-wind-blue p-4 text-wind-white md:p-6">
       <div className="relative flex flex-1 flex-col justify-between border border-wind-black px-5 pb-6 pt-24 md:px-10 md:pb-10 md:pt-28">
         <div className="flex items-start justify-between text-[11px] font-bold uppercase tracking-[0.3em] md:text-xs">
-          <span className="font-display font-bold" style={{ textShadow: '3px 3px 0 rgba(120,6,6,0.48)' }}>Katrina Rose Wind</span>
-          <span className="font-display text-[12px] font-black md:text-sm" style={{ textShadow: '3px 3px 0 rgba(120,6,6,0.48)' }}>Berlin</span>
+          <span>Katrina Rose Wind</span>
+          <span>Est. Berlin</span>
         </div>
 
         <div className="flex flex-col items-center justify-center py-12 md:py-8">
@@ -137,9 +137,9 @@ function Hero() {
         </div>
 
         <div className="grid items-end gap-5 text-[10px] font-medium uppercase leading-relaxed tracking-[0.2em] md:grid-cols-3 md:text-xs">
-          <p className="font-display font-bold" style={{ textShadow: '3px 3px 0 rgba(120,6,6,0.48)' }}>Creative · Brand · Culture</p>
-          <a href="#work" className="flex items-center justify-center gap-2 transition-opacity hover:opacity-60 font-display font-bold" style={{ textShadow: '3px 3px 0 rgba(120,6,6,0.48)' }}>Scroll <ArrowDown className="h-4 w-4" strokeWidth={1.5} /></a>
-          <p className="text-right font-display font-bold" style={{ textShadow: '3px 3px 0 rgba(120,6,6,0.48)' }}>Ideas · Brands · Campaigns ·<br className="hidden md:block" /> Experiences</p>
+          <p>Creative · Brand · Culture</p>
+          <a href="#work" className="flex items-center justify-center gap-2 transition-opacity hover:opacity-60">Scroll <ArrowDown className="h-4 w-4" strokeWidth={1.5} /></a>
+          <p className="text-right">Ideas · Brands · Campaigns ·<br className="hidden md:block" /> Experiences</p>
         </div>
       </div>
     </section>
@@ -181,7 +181,7 @@ function Marquee() {
 function Proof() {
   return (
     <section className="bg-wind-white px-5 py-10 text-wind-black md:px-10 md:py-14">
-      <div className="grid gap-4 border-y border-wind-black py-6 text-center text-[17px] font-black uppercase tracking-[0.22em] text-wind-blue md:grid-cols-4 md:text-left md:text-[17px]">
+      <div className="grid gap-4 border-y border-wind-black py-6 text-center text-[16px] font-bold uppercase tracking-[0.22em] text-wind-blue md:grid-cols-4 md:text-left md:text-[15px]">
         <span>10+ years in marketing</span>
         <span>International campaigns</span>
         <span>Brand & content</span>
@@ -280,7 +280,7 @@ function NextAppProjectVisual({ project }) {
 
 function NextAppProjectContent({ project }) {
   return (
-    <div className="nextapp-project-content space-y-12">
+    <div className="space-y-12">
       <div>
         <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.22em] text-wind-white/55">STRATEGY → VOICE → CREATIVE</p>
         <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-wind-white/70">WHAT THE BRAND WAS</p>
@@ -364,7 +364,7 @@ function BerlinerProject({ project }) {
   ];
 
   return (
-    <div className="berliner-project-content space-y-14">
+    <div className="space-y-14">
       <div className="grid gap-8 md:grid-cols-12 md:items-start">
         <div className="md:col-span-3">
           <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-wind-white/70">THE ANGLE</p>
@@ -420,7 +420,7 @@ function BerlinBitesProject({ project }) {
   const reelSubjects = ['HANDS', 'CHEFS', 'DISHES', 'RESTAURANTS', 'BAKERIES', 'MARKETS', 'STREET SCENES', 'INGREDIENTS', 'BILLS + PRICES', 'CONVERSATIONS'];
 
   return (
-    <div className="berlinbites-project-content grid gap-10 md:grid-cols-12 md:items-start">
+    <div className="grid gap-10 md:grid-cols-12 md:items-start">
       <div className="md:col-span-7">
         <div className="space-y-14">
           <section>
@@ -566,7 +566,7 @@ function DroidconProject({ project }) {
   ];
 
   return (
-    <div className="droidcon-project-content grid gap-12 md:grid-cols-12">
+    <div className="grid gap-12 md:grid-cols-12">
       <div className="md:col-span-7 md:col-start-1">
         <div className="border-y border-wind-white/25 py-8">
           <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-wind-white/70">MOBILE SEASONS</p>
@@ -806,21 +806,21 @@ function WorkCard({ project, expanded, onToggle }) {
             <span className="font-display text-4xl text-wind-orange md:text-5xl" style={{ textShadow: '4px 4px 0 rgba(255,255,255,0.5)' }}>{project.n}</span>
           </div>
           <div className="md:col-span-6">
-            <p className="project-card-subheading text-[13px] font-bold uppercase tracking-[0.18em] text-wind-white">{project.type}</p>
+            <p className="text-[12px] font-medium uppercase tracking-[0.25em] text-wind-white">{project.type}</p>
             <h3 className="mt-3 font-display text-[clamp(2.4rem,5vw,5.5rem)] uppercase leading-[0.88] tracking-[-0.03em] text-wind-orange transition-transform duration-300 group-hover:translate-x-2" style={{ textShadow: '4px 4px 0 rgba(255,255,255,0.5)' }}>{project.displayTitle || project.title}</h3>
-            {project.note && <p className="project-card-subheading mt-4 max-w-lg text-[12px] font-bold uppercase tracking-[0.12em] text-wind-white">{project.note}</p>}
+            {project.note && <p className="mt-4 max-w-lg text-[10px] font-medium uppercase tracking-[0.18em] text-wind-white">{project.note}</p>}
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <p className="max-w-md font-poppins text-[19px] leading-[1.38] text-wind-white md:text-[21px]">{project.intro}</p>
             <span className="mt-6 inline-flex items-center gap-2 border-b border-wind-white/60 pb-1 text-[12px] font-medium uppercase tracking-[0.25em] text-wind-white">
-              {expanded ? (project.nextApp || project.droidcon ? 'CLOSE PROJECT ×' : project.crush || project.berliner ? 'CLOSE EDITORIAL WORK ×' : project.berlinBites ? 'CLOSE PROPOSAL ×' : 'Close case study') : (project.title === 'ZALANDO' ? 'Read case study' : 'Read more')} <Plus className={`h-4 w-4 transition-transform ${expanded ? 'rotate-45' : ''}`} strokeWidth={1.5} />
+              {expanded ? (project.nextApp ? 'CLOSE PROJECT ×' : 'Close case study') : (project.title === 'ZALANDO' ? 'Read case study' : 'Read more')} <Plus className={`h-4 w-4 transition-transform ${expanded ? 'rotate-45' : ''}`} strokeWidth={1.5} />
             </span>
           </div>
         </div>
       </button>
 
       {expanded && (
-        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="project-detail-content mt-10 grid gap-8 pb-10 md:grid-cols-12 text-wind-white">
+        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mt-10 grid gap-8 pb-10 md:grid-cols-12 text-wind-white">
           {project.berliner ? (
             <div className="md:col-span-11 md:col-start-2">
               <BerlinerProject project={project} />
@@ -835,7 +835,7 @@ function WorkCard({ project, expanded, onToggle }) {
             </div>
           ) : project.zalando ? (
             <div className="md:col-span-11 md:col-start-2">
-              <div className="zalando-project-content grid gap-8 md:grid-cols-12">
+              <div className="grid gap-8 md:grid-cols-12">
                 <div className="md:col-span-7 md:col-start-1">
                   <div className="border-y border-wind-white/25 py-8">
                     <p className="font-poppins text-[19px] leading-[1.45] md:text-[21px]">{project.intro}</p>
@@ -935,7 +935,7 @@ function WorkCard({ project, expanded, onToggle }) {
             </div>
           ) : project.crush ? (
             <div className="md:col-span-11 md:col-start-2">
-              <div className="crush-project-content grid gap-8 md:grid-cols-12">
+              <div className="grid gap-8 md:grid-cols-12">
                 <div className="md:col-span-7 md:col-start-1">
                   <div className="border-y border-wind-white/25 py-8">
                     <p className="font-poppins text-[19px] leading-[1.45] md:text-[21px]">{project.detail}</p>
@@ -999,164 +999,13 @@ function WorkCard({ project, expanded, onToggle }) {
   );
 }
 
-
-function FolderFilter({ label, active, onClick }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      aria-label={`Filter selected work by ${label}`}
-      className={`folder-filter group ${active ? 'is-active' : ''}`}
-    >
-      <svg className="folder-filter-icon" viewBox="0 0 124 101" aria-hidden="true" focusable="false">
-        <defs>
-          <linearGradient id={`folder-body-${label}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#31c1f4" />
-            <stop offset="100%" stopColor="#2aaeea" />
-          </linearGradient>
-          <linearGradient id={`folder-tab-${label}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#31c1f4" />
-            <stop offset="100%" stopColor="#2db5ec" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M11 0h34.5c2.5 0 4.9.7 7 2.1L64 11h49c6.1 0 11 4.9 11 11v68c0 6.1-4.9 11-11 11H11C4.9 101 0 96.1 0 90V11C0 4.9 4.9 0 11 0Z"
-          fill={`url(#folder-tab-${label})`}
-        />
-        <path
-          d="M0 22c0-6.1 4.9-11 11-11h102c6.1 0 11 4.9 11 11v68c0 6.1-4.9 11-11 11H11C4.9 101 0 96.1 0 90V22Z"
-          fill={`url(#folder-body-${label})`}
-        />
-      </svg>
-      <span className="folder-filter-label">{label}</span>
-    </button>
-  );
-}
-
 function Work() {
   const [filter, setFilter] = useState('ALL');
   const [open, setOpen] = useState('NEXT.APP');
   const visible = useMemo(() => filter === 'ALL' ? PROJECTS : PROJECTS.filter((project) => project.tags.includes(filter)), [filter]);
 
   return (
-    <>
-      <style>{`
-
-        .folder-filter {
-          display: inline-flex;
-          width: 132px;
-          flex: 0 0 132px;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-          padding: 0;
-          border: 0;
-          background: transparent;
-          text-align: center;
-          cursor: pointer;
-        }
-        .folder-filter-icon {
-          display: block;
-          width: 124px;
-          height: 101px;
-          overflow: visible;
-          transition: filter 160ms ease;
-        }
-        .folder-filter-label {
-          display: inline-block;
-          width: auto;
-          min-height: 0;
-          padding: 3px 8px 4px;
-          background: transparent;
-          color: hsl(var(--wind-white));
-          font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
-          font-size: 12px;
-          font-weight: 700;
-          line-height: 1.05;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          transition: background-color 140ms ease, color 140ms ease;
-        }
-        .folder-filter:hover .folder-filter-label,
-        .folder-filter:focus-visible .folder-filter-label {
-          background: hsl(var(--wind-orange));
-          color: hsl(var(--wind-white));
-        }
-        .folder-filter:hover .folder-filter-icon,
-        .folder-filter:focus-visible .folder-filter-icon {
-          filter: brightness(1.03);
-        }
-        .folder-filter.is-active .folder-filter-icon {
-          outline: 2px solid hsl(var(--wind-orange));
-          outline-offset: -2px;
-        }
-        .folder-filter:focus-visible {
-          outline: 2px solid hsl(var(--wind-white));
-          outline-offset: 4px;
-        }
-        @media (max-width: 640px) {
-          .folder-filter {
-            width: 118px;
-            flex-basis: 118px;
-          }
-          .folder-filter-icon {
-            width: 112px;
-            height: 91px;
-          }
-        }
-        .project-card-subheading {
-          font-size: clamp(13px, 0.9vw, 16px);
-          font-weight: 700;
-          line-height: 1.25;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #ffffff;
-        }
-        .project-detail-content .text-wind-orange {
-          color: hsl(var(--wind-white)) !important;
-          text-shadow: none !important;
-          font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
-          font-size: clamp(22px, 1.8vw, 30px) !important;
-          font-weight: 700 !important;
-          line-height: 1.22 !important;
-          letter-spacing: 0.06em !important;
-        }
-        .project-detail-content h5 {
-          font-size: clamp(24px, 2vw, 34px) !important;
-          line-height: 1.05 !important;
-        }
-        .nextapp-project-content [class*="text-[10px]"] {
-          font-size: 13px !important;
-        }
-        .berliner-project-content [class*="text-[9px]"],
-        .berliner-project-content [class*="text-[10px]"] {
-          font-size: 13px !important;
-        }
-        .berliner-project-content .font-poppins.text-\[17px\] {
-          font-size: 19px !important;
-        }
-        .berlinbites-project-content [class*="text-[10px]"],
-        .berlinbites-project-content [class*="text-[11px]"] {
-          font-size: 14px !important;
-        }
-        .droidcon-project-content [class*="text-[10px]"] {
-          font-size: 14px !important;
-        }
-        .droidcon-project-content .font-poppins.text-\[16px\] {
-          font-size: 18px !important;
-        }
-        .droidcon-project-content .font-poppins.text-\[18px\] {
-          font-size: 20px !important;
-        }
-        .crush-project-content [class*="text-[10px]"] {
-          font-size: 15px !important;
-        }
-        .zalando-project-content [class*="text-[10px]"] {
-          font-size: 14px !important;
-        }
-      `}</style>
-      <section id="work" className="bg-wind-blue px-5 pb-28 pt-16 text-wind-white md:px-10 md:pb-40 md:pt-20">
+    <section id="work" className="bg-wind-blue px-5 pb-28 pt-16 text-wind-white md:px-10 md:pb-40 md:pt-20">
       <Reveal>
         <div className="mb-12 flex items-end justify-between border-t border-wind-white/35 pt-6">
           <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-wind-white">02 — Selected Work</p>
@@ -1166,13 +1015,15 @@ function Work() {
       <Reveal delay={0.05}>
         <div className="grid gap-8 md:grid-cols-12 md:items-end">
           <h2 className="md:col-span-8 font-display text-[clamp(3.6rem,9vw,9rem)] uppercase leading-[0.82] tracking-[-0.04em]">Work that<br />moves<span className="align-top text-[0.4em]">↗</span></h2>
-          <p className="max-w-sm font-poppins text-lg font-medium leading-relaxed text-wind-white md:col-span-4 md:col-start-9">Selected marketing, creative and cultural work.</p>
+          <p className="max-w-sm font-poppins text-base leading-relaxed text-wind-white md:col-span-4 md:col-start-9">Selected marketing, creative and cultural work.</p>
         </div>
       </Reveal>
 
-      <div className="mt-12 flex flex-wrap items-end gap-x-8 gap-y-6 border-y border-wind-white/35 py-4 md:gap-x-10">
+      <div className="mt-12 flex flex-wrap gap-2 border-y border-wind-white/35 py-4">
         {FILTERS.map((item) => (
-          <FolderFilter key={item} label={item} active={filter === item} onClick={() => setFilter(item)} />
+          <button key={item} type="button" onClick={() => setFilter(item)} className={`border border-wind-white/55 px-4 py-2 text-[12px] font-medium uppercase tracking-[0.2em] transition-colors ${filter === item ? 'bg-wind-white text-wind-blue' : 'text-wind-white hover:bg-wind-white hover:text-wind-blue'}`}>
+            {item}
+          </button>
         ))}
       </div>
 
@@ -1184,7 +1035,6 @@ function Work() {
         ))}
       </div>
     </section>
-    </>
   );
 }
 
@@ -1294,7 +1144,7 @@ function Contact() {
       <div className="relative mx-auto h-full min-h-[1020px] max-w-[1584px] px-5 py-8 md:px-16 md:py-0">
         <p className="absolute left-5 top-8 text-[18px] font-black uppercase tracking-[0.22em] text-wind-white md:left-16 md:top-[58px]"><span>05</span> — Contact</p>
 
-        <h2 className="pt-[92px] text-center font-display text-[clamp(5.8rem,7.55vw,8rem)] font-bold uppercase leading-[0.8] tracking-[-0.055em] text-[#8B0000] md:absolute md:left-[23.3%] md:top-[90px] md:w-[58%] md:pt-0 md:text-left" style={{ textShadow: '6px 6px 0 rgba(143,145,204,0.95)' }}>
+        <h2 className="pt-[92px] text-center font-display text-[clamp(5.8rem,7.55vw,8rem)] font-bold uppercase leading-[0.8] tracking-[-0.055em] md:absolute md:left-[23.3%] md:top-[90px] md:w-[58%] md:pt-0 md:text-left" style={{ textShadow: '6px 6px 0 rgba(120,6,6,0.48)' }}>
           LET&apos;S MAKE<br />SOMETHING.
         </h2>
 
