@@ -6,7 +6,6 @@ import Reveal from '@/components/Reveal';
 import Seo from '@/components/Seo';
 
 const EMAIL = 'krwind.africa@gmail.com';
-const PHONE = '+49 151 45632715';
 
 const FILTERS = ['ALL', 'MARKETING', 'CREATIVE', 'EDITORIAL', 'EXPERIENCES'];
 
@@ -1309,13 +1308,8 @@ function Contact() {
               <p className="text-[11px] font-bold uppercase tracking-[0.3em]">Studio</p>
               <p className="mt-4 font-poppins text-[25px] font-bold md:text-[1.8vw]">Berlin. Working internationally.</p>
             </div>
-            <div className="mt-9">
-              <p className="text-[11px] font-bold uppercase tracking-[0.3em]">Phone</p>
-              <a href="tel:+4915145632715" className="mt-4 inline-block font-poppins text-[25px] font-bold transition-opacity hover:opacity-60 md:text-[1.7vw]">{PHONE}</a>
-            </div>
           </div>
         </div>
-
         <div className="mt-12 md:absolute md:right-[4%] md:top-[390px] md:mt-0">
           <div className="absolute left-[60px] -top-[32px] h-full w-[96.6%] bg-[#780606]" />
           <div className="absolute left-[32px] top-[18px] h-full w-[calc(100%+32px)] bg-wind-white" />
