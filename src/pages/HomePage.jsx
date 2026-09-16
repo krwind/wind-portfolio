@@ -214,14 +214,14 @@ function About() {
           <p className="text-right text-[18px] font-black uppercase tracking-[0.22em] text-[#780606]" style={{ textShadow: '3px 3px 0 rgba(255,255,255,0.48)' }}>A marketer with a creative brain</p>
         </div>
 
-        <div className="pt-[88px] md:absolute md:left-16 md:top-[96px] md:w-[46%] md:max-w-[730px] md:pt-0">
+        <div className="pt-[88px] md:absolute md:left-16 md:top-[96px] md:w-[790px] md:pt-0">
           <div className="font-display text-[5.55rem] font-bold uppercase leading-[0.84] tracking-[-0.055em]">
             <div className="w-fit border-b-[7px] border-wind-black pb-1">I MAKE IDEAS</div>
             <div className="mt-1 w-fit border-b-[7px] border-wind-black pb-1">PEOPLE CARE</div>
             <div className="mt-1 w-fit border-b-[7px] border-wind-black pb-1">ABOUT</div>
           </div>
 
-          <div className="mt-[72px] max-w-[730px] font-poppins text-[21px] leading-[1.38] md:text-[21px] md:leading-[1.38]">
+          <div className="mt-[72px] max-w-[800px] font-poppins text-[21px] leading-[1.38] md:text-[21px] md:leading-[1.38]">
             <p className="mb-7 font-bold text-[1.35rem] md:text-[1.35rem]">Hi, I&apos;m Wind.</p>
             <p>
               I&apos;m a marketing strategist and creative working at the intersection of brands, culture and people. I’m interested in what makes someone stop scrolling, change plans, book a table, buy a ticket, or tell someone else about it.
@@ -1471,6 +1471,26 @@ function Capabilities() {
             </div>
           </div>
         </div>
+
+        <div className="capability-mobile-grid mt-14 grid gap-14 md:hidden">
+          <div className="grid grid-cols-2 gap-3">
+            {strips.map((src) => (
+              <div key={src} className="h-[96px] overflow-hidden">
+                <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" />
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-12">
+            {items.map(([title, label, body]) => (
+              <article key={title} className="border-t border-wind-black/20 pt-6">
+                <h3 className="font-display text-[clamp(4rem,17vw,6rem)] font-bold uppercase leading-[0.78] tracking-[-0.055em]">{title}</h3>
+                <p className="mt-5 font-poppins text-[14px] font-bold uppercase leading-[1.12] tracking-[0.12em] text-[#17345d]">{label}</p>
+                <p className="mt-3 max-w-[34rem] font-poppins text-[18px] leading-[1.35]">{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -1478,7 +1498,7 @@ function Capabilities() {
 
 function Now() {
   return (
-    <section className="relative overflow-hidden bg-[#780606] text-wind-white md:min-h-[900px]" style={{ minHeight: '900px' }}>
+    <section id="now" className="relative overflow-hidden bg-[#780606] text-wind-white md:min-h-[900px]" style={{ minHeight: '900px' }}>
       <div className="relative mx-auto h-full min-h-[900px] max-w-[1584px] px-5 py-8 md:px-16 md:py-0">
         <p className="absolute left-5 top-8 text-[18px] font-black uppercase tracking-[0.22em] text-wind-white md:left-16 md:top-[52px]">04 — Now</p>
 
@@ -1490,9 +1510,16 @@ function Now() {
         </div>
 
         <div className="mt-12 md:absolute md:left-[55%] md:top-[104px] md:mt-0 md:w-[42%]">
-          <motion.h2 className="font-display text-[clamp(5rem,5.15vw,5.9rem)] font-bold uppercase leading-[0.84] tracking-[-0.055em]" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }} variants={{ show: { transition: { staggerChildren: 0.12 } } }}>
+          <motion.h2 className="hidden font-display text-[clamp(5rem,5.15vw,5.9rem)] font-bold uppercase leading-[0.84] tracking-[-0.055em] md:block" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }} variants={{ show: { transition: { staggerChildren: 0.12 } } }}>
             {['BERLIN.', 'IDEAS.', 'GOOD', 'BRIEFS.'].map((line) => (
               <motion.span key={line} className="block" variants={{ hidden: { x: -90, opacity: 0 }, show: { x: 0, opacity: 1, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } } }}>
+                {line}
+              </motion.span>
+            ))}
+          </motion.h2>
+          <motion.h2 className="font-display text-[clamp(3.25rem,13vw,5rem)] font-bold uppercase leading-[0.84] tracking-[-0.055em] md:hidden" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }} variants={{ show: { transition: { staggerChildren: 0.12 } } }}>
+            {['BERLIN.', 'IDEAS.', 'GOOD BRIEFS.'].map((line) => (
+              <motion.span key={line} className="block whitespace-nowrap" variants={{ hidden: { x: -90, opacity: 0 }, show: { x: 0, opacity: 1, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } } }}>
                 {line}
               </motion.span>
             ))}
@@ -1532,7 +1559,7 @@ function Contact() {
           </div>
         </div>
 
-        <div className="mt-12 md:absolute md:right-[4%] md:top-[390px] md:mt-0">
+        <div className="contact-image-wrap mt-12 md:absolute md:right-[4%] md:top-[390px] md:mt-0">
           <div className="absolute left-[60px] -top-[32px] h-full w-[96.6%] bg-[#780606]" />
           <div className="absolute left-[32px] top-[18px] h-full w-[calc(100%+32px)] bg-wind-white" />
           <div className="relative z-10 aspect-[3/2] w-[min(84vw,791px)] overflow-hidden">
@@ -1598,6 +1625,199 @@ function HomePage() {
         @media (pointer: fine) {
           html, body, a, button, [role="button"] {
             cursor: url("/cursor-deoron.png") 13 1, auto !important;
+          }
+        }
+
+        /* MOBILE RESPONSIVE LAYOUT
+           Desktop art direction is preserved above the md breakpoint.
+           Narrow screens switch fixed/absolute compositions back into normal flow. */
+        @media (max-width: 767px) {
+          html, body {
+            overflow-x: hidden;
+          }
+
+          /* HERO */
+          #top h1 {
+            white-space: nowrap !important;
+            font-size: clamp(5rem, 23vw, 22rem) !important;
+          }
+
+          /* ABOUT */
+          #about,
+          #about > div {
+            min-height: auto !important;
+          }
+          #about > div > div:nth-child(2) {
+            position: relative !important;
+            left: auto !important;
+            top: auto !important;
+            width: 100% !important;
+            max-width: none !important;
+            padding-top: 88px !important;
+          }
+          #about > div > div:nth-child(2) > div:first-child {
+            font-size: clamp(2.8rem, 13vw, 5.55rem) !important;
+          }
+          #about > div > div:nth-child(2) > div:nth-child(2) {
+            max-width: none !important;
+            font-size: 18px !important;
+            line-height: 1.42 !important;
+          }
+          #about > div > div:nth-child(3) {
+            position: relative !important;
+            right: auto !important;
+            top: auto !important;
+            width: 100% !important;
+            margin-top: 48px !important;
+          }
+          #about > div > div:nth-child(3) > div:first-child {
+            right: -16px !important;
+            top: -16px !important;
+            width: calc(100% - 8px) !important;
+            height: 100% !important;
+          }
+          #about > div > div:nth-child(3) > div:nth-child(2) {
+            width: min(100%, 452px) !important;
+            height: auto !important;
+            aspect-ratio: 452 / 615 !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          /* SELECTED WORK */
+          #work .folder-filter {
+            width: 92px;
+            flex-basis: 92px;
+          }
+          #work .folder-filter-icon {
+            width: 88px;
+            height: 72px;
+          }
+          #work .folder-filter-label {
+            font-size: 10px;
+            letter-spacing: 0.08em;
+          }
+          #work .project-detail-content {
+            min-width: 0;
+            overflow-wrap: anywhere;
+          }
+          #work .project-detail-content img,
+          #work .project-detail-content iframe,
+          #work .project-detail-content video {
+            max-width: 100%;
+          }
+          #work .deoron-exhibition-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          /* HOW I WORK */
+          #capabilities,
+          #capabilities > div {
+            min-height: auto !important;
+          }
+          #capabilities > div > div:nth-of-type(3) {
+            display: none !important;
+          }
+          #capabilities > div > div:nth-child(2) h2 span {
+            white-space: normal !important;
+          }
+          #capabilities > div > div:nth-child(2) {
+            padding-top: 88px !important;
+          }
+          #capabilities > div > div:nth-child(2) h2 {
+            font-size: clamp(2.8rem, 10.5vw, 4.2rem) !important;
+            line-height: 0.86 !important;
+          }
+          #capabilities > div > p {
+            max-width: none !important;
+            margin-top: 32px !important;
+            font-size: 18px !important;
+            line-height: 1.35 !important;
+          }
+          #capabilities .capability-mobile-grid {
+            margin-top: 56px !important;
+          }
+          #capabilities .capability-mobile-grid h3 {
+            white-space: nowrap !important;
+            font-size: clamp(2.9rem, 11.5vw, 5rem) !important;
+            line-height: 0.82 !important;
+            letter-spacing: -0.055em !important;
+          }
+
+          /* NOW */
+          #now,
+          #now > div {
+            min-height: auto !important;
+          }
+          #now > div > div:first-of-type {
+            padding-top: 92px !important;
+          }
+          #now > div > div:first-of-type > div:first-child {
+            width: calc(100% - 8px) !important;
+            height: auto !important;
+            aspect-ratio: 685 / 498 !important;
+          }
+          #now > div > div:first-of-type > div:nth-child(2) {
+            width: calc(100% - 28px) !important;
+            height: auto !important;
+            aspect-ratio: 667 / 445 !important;
+            margin-left: 14px !important;
+            margin-top: 28px !important;
+          }
+          #now > div > div:nth-child(2) {
+            max-width: none !important;
+            margin-top: 52px !important;
+          }
+          #now > div > div:nth-child(2) h2 {
+            max-width: 100% !important;
+          }
+          #now > div > div:nth-child(2) h2 span {
+            white-space: nowrap !important;
+            overflow-wrap: normal !important;
+          }
+          #now > div > div:nth-child(2) > div {
+            max-width: none !important;
+            font-size: 19px !important;
+            line-height: 1.4 !important;
+          }
+
+          /* CONTACT */
+          #contact,
+          #contact > div {
+            min-height: auto !important;
+          }
+          #contact > div > h2 {
+            font-size: clamp(4.7rem, 19vw, 7rem) !important;
+          }
+          #contact .contact-image-wrap {
+            position: relative !important;
+            left: auto !important;
+            right: auto !important;
+            top: auto !important;
+            width: 100% !important;
+            margin-top: 48px !important;
+          }
+          #contact .contact-image-wrap > div:first-child {
+            left: 24px !important;
+            top: -16px !important;
+            width: calc(100% - 12px) !important;
+            height: 100% !important;
+          }
+          #contact .contact-image-wrap > div:nth-child(2) {
+            left: 12px !important;
+            top: 12px !important;
+            width: calc(100% - 4px) !important;
+            height: 100% !important;
+          }
+          #contact .contact-image-wrap > div:nth-child(3) {
+            width: 100% !important;
+            max-width: none !important;
+            aspect-ratio: 3 / 2 !important;
+          }
+
+          /* LONG EMAILS / LINKS SHOULD NEVER CREATE HORIZONTAL OVERFLOW. */
+          a, p, h1, h2, h3, h4, h5, h6, span {
+            overflow-wrap: anywhere;
           }
         }
       `}</style>
