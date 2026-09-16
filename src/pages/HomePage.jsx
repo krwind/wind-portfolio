@@ -214,14 +214,14 @@ function About() {
           <p className="text-right text-[18px] font-black uppercase tracking-[0.22em] text-[#780606]" style={{ textShadow: '3px 3px 0 rgba(255,255,255,0.48)' }}>A marketer with a creative brain</p>
         </div>
 
-        <div className="pt-[88px] md:absolute md:left-16 md:top-[96px] md:w-[790px] md:pt-0">
+        <div className="pt-[88px] md:absolute md:left-16 md:top-[96px] md:w-[46%] md:max-w-[730px] md:pt-0">
           <div className="font-display text-[5.55rem] font-bold uppercase leading-[0.84] tracking-[-0.055em]">
             <div className="w-fit border-b-[7px] border-wind-black pb-1">I MAKE IDEAS</div>
             <div className="mt-1 w-fit border-b-[7px] border-wind-black pb-1">PEOPLE CARE</div>
             <div className="mt-1 w-fit border-b-[7px] border-wind-black pb-1">ABOUT</div>
           </div>
 
-          <div className="mt-[72px] max-w-[800px] font-poppins text-[21px] leading-[1.38] md:text-[21px] md:leading-[1.38]">
+          <div className="mt-[72px] max-w-[730px] font-poppins text-[21px] leading-[1.38] md:text-[21px] md:leading-[1.38]">
             <p className="mb-7 font-bold text-[1.35rem] md:text-[1.35rem]">Hi, I&apos;m Wind.</p>
             <p>
               I&apos;m a marketing strategist and creative working at the intersection of brands, culture and people. I’m interested in what makes someone stop scrolling, change plans, book a table, buy a ticket, or tell someone else about it.
@@ -657,7 +657,6 @@ function DeoronProject({ project }) {
             <span>Open full deck</span><ArrowUpRight className="h-3 w-3" strokeWidth={1.5} />
           </div>
         </a>
-        <p className="mt-5 max-w-sm font-poppins text-[16px] leading-[1.45] text-wind-white/80">The original strategic proposal opens as a PDF. The portfolio page carries the strategic context; the deck is the complete project material.</p>
       </aside>
 
       <div className="md:col-span-12 mt-12 flex flex-col items-center border-y border-wind-white/40 px-4 py-16 text-center md:mt-20 md:px-8 md:py-24">
@@ -715,11 +714,11 @@ function DeoronProject({ project }) {
         >
           Close ×
         </button>
-        <div className="flex max-h-[92vh] max-w-[94vw] items-center justify-center" onClick={(event) => event.stopPropagation()}>
+        <div className="relative flex max-h-[92vh] max-w-[94vw] items-center justify-center" onClick={(event) => event.stopPropagation()}>
           <img
             src={lightboxImage.src}
             alt={lightboxImage.alt}
-            className="max-h-[92vh] max-w-[94vw] object-contain"
+            className="block max-h-[92vh] max-w-[94vw] object-contain"
           />
         </div>
       </div>
