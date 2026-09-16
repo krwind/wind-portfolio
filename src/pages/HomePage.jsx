@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Plus } from 'lucide-react';
@@ -49,6 +49,21 @@ const PROJECTS = [
     link: '/work/berlin-bites.pdf',
   },  {
     n: '04',
+    title: 'DEORON',
+    secondaryTitle: 'REFRAMING THE FEED / BERLIN EXHIBITION',
+    category: 'MARKETING',
+    type: 'STRATEGY × COMMERCIAL STRATEGY × EVENT MANAGEMENT × PRODUCTION',
+    tags: ['MARKETING', 'EXPERIENCES'],
+    intro: "I developed a strategic proposal to reframe DEORON from a design discovery account into a curated media platform — building a commercial model around curation, scarcity and access rather than simply selling Instagram posts. I later worked with DEORON on its Berlin exhibition, supporting the project from setup through breakdown across event production, designer liaison, guest experience and guided tours.",
+    detail: "Digital platform → commercial strategy → physical experience.",
+    note: 'REFRAMING THE FEED / BERLIN EXHIBITION',
+    deoron: true,
+    image: '/work/deoron/cover.jpg',
+    imageAlt: 'DEORON Reframing the Feed strategic proposal cover',
+    link: '/work/deoron/DEORON_Reframing_the_Feed_Portfolio.pdf',
+    slug: 'deoron',
+  },  {
+    n: '05',
     title: 'DROIDCON / FLUTTERCON',
     displayTitle: <>DROIDCON /<br />FLUTTERCON</>,
     category: 'MARKETING',
@@ -62,7 +77,7 @@ const PROJECTS = [
     note: 'MOBILE SEASONS · INTERNATIONAL MARKETING · EUROPE / NORTH AMERICA / INDIA',
     link: '/work/droidcon/fluttercon-orlando.pdf',
   },  {
-    n: '05',
+    n: '06',
     title: 'CRUSH MAGAZINE',
     category: 'EDITORIAL',
     type: 'EDITORIAL × CONTENT × AUDIENCE',
@@ -73,7 +88,7 @@ const PROJECTS = [
     note: 'PUBLISHED EDITORIAL · FOOD + CULTURE · DIGITAL + AUDIENCE',
     link: 'https://crushmag-online.com/author/katrina/page/5/',
   },  {
-    n: '06',
+    n: '07',
     title: 'ZALANDO',
     category: 'MARKETING',
     type: 'CULTURAL STRATEGY × SOCIAL EDITORIAL',
@@ -101,7 +116,7 @@ function WindMark({ className = '' }) {
 
 function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="absolute inset-x-0 top-0 z-50">
       <div className="flex items-center justify-center px-5 py-4 text-wind-orange md:px-8">
         <nav className="hidden items-center gap-6 md:flex">
           <a href="#about" className="flex h-[54px] w-[180px] items-center justify-center rounded-full border-2 border-white bg-transparent px-6 text-[24px] font-medium normal-case tracking-normal text-white underline decoration-2 underline-offset-2 transition-colors duration-200 hover:border-[#780606] hover:bg-[#780606] hover:text-white focus-visible:border-[#780606] focus-visible:bg-[#780606] focus-visible:text-white">About</a>
@@ -209,10 +224,10 @@ function About() {
           <div className="mt-[72px] max-w-[800px] font-poppins text-[21px] leading-[1.38] md:text-[21px] md:leading-[1.38]">
             <p className="mb-7 font-bold text-[1.35rem] md:text-[1.35rem]">Hi, I&apos;m Wind.</p>
             <p>
-              I&apos;m a marketing strategist and creative working at the intersection of brands and culture. I&apos;m interested in the things that make people stop scrolling, change plans, book a table, buy the ticket or tell someone else about it.
+              I&apos;m a marketing strategist and creative working at the intersection of brands, culture and people. I’m interested in what makes someone stop scrolling, change plans, book a table, buy a ticket, or tell someone else about it.
             </p>
             <p className="mt-2">
-              My work moves between strategy, storytelling and execution — developing campaigns and concepts, shaping content and creative direction, and producing experiences people can actually engage with. I&apos;ve spent 10+ years moving between the page and the real world, with work spanning food, hospitality, tech, design and culture.
+              For 10+ years, I&apos;ve turned ideas into campaigns, stories, brands and experiences across food, hospitality, tech, design and culture. I move between strategy and execution, developing the idea, shaping the creative and bringing it to life through marketing, content, creative direction, brand experiences and events.
             </p>
             <p className="mt-5">
               Based in Berlin. International by upbringing. Usually somewhere between a book, a restaurant and an unnecessary second glass of orange wine.
@@ -545,6 +560,174 @@ function BerlinBitesProject({ project }) {
   );
 }
 
+function DeoronProject({ project }) {
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  const exhibitionImages = [
+    { src: '/work/deoron/exhibition/01-chair.png', alt: 'DEORON Berlin exhibition — chair' },
+    { src: '/work/deoron/exhibition/02-thomas.png', alt: 'DEORON Berlin exhibition — Thomas' },
+    { src: '/work/deoron/exhibition/03-spat.png', alt: 'DEORON Berlin exhibition — spat' },
+    { src: '/work/deoron/exhibition/04-soundsessions.png', alt: 'DEORON Berlin exhibition — sound sessions' },
+    { src: '/work/deoron/exhibition/05-IMG_4045.jpeg', alt: 'DEORON Berlin exhibition — installation' },
+    { src: '/work/deoron/exhibition/06-3d49a00b.jpeg', alt: 'DEORON Berlin exhibition — installation' },
+  ];
+
+  useEffect(() => {
+    if (lightboxIndex === null) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        setLightboxIndex((current) => (current === null ? 0 : (current + 1) % exhibitionImages.length));
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        setLightboxIndex((current) => (current === null ? 0 : (current - 1 + exhibitionImages.length) % exhibitionImages.length));
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        setLightboxIndex(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, exhibitionImages.length]);
+
+  const lightboxImage = lightboxIndex === null ? null : exhibitionImages[lightboxIndex];
+
+  const strategySections = [
+    ['01 — THE OPPORTUNITY',
+      <>DEORON already had the audience and the taste. The opportunity was to turn that cultural relevance into a more deliberate commercial proposition — without compromising what made the platform valuable in the first place.<p className="mt-7 font-display text-[clamp(1.9rem,3.2vw,3.2rem)] uppercase leading-[0.88] tracking-[-0.025em]">EXISTING AUDIENCE<br /><span className="text-wind-white/45">→</span><br />DISTINCT MEDIA PLATFORM<br /><span className="text-wind-white/45">→</span><br />COMMERCIAL MODEL</p></>],
+    ['02 — THE PROPOSITION',
+      <> <p className="font-display text-[clamp(2rem,3.5vw,3.7rem)] uppercase leading-[0.84] tracking-[-0.03em] text-wind-white">DON'T SELL ACCESS TO THE FEED.<br />SELL ACCESS TO THE CURATION.</p><p className="mt-7">DEORON had been featuring products because they looked good and fit the aesthetic. I proposed reframing that informal curation as the product itself — with brands paying for limited access to an audience and editorial environment they couldn't simply buy their way into.</p><p className="mt-7 font-display text-[clamp(1.8rem,3vw,3rem)] uppercase leading-[0.88] tracking-[-0.02em]">CURATION · SCARCITY · CREDIBILITY</p></>],
+    ['03 — THE EDITORIAL MODEL',
+      <><p className="font-display text-[clamp(2rem,3.5vw,3.7rem)] uppercase leading-[0.84] tracking-[-0.03em] text-wind-white">THE COMMERCIAL PROPOSITION ONLY WORKS IF THE FEED STAYS SELECTIVE.</p><p className="mt-7">I proposed an 80/20 editorial model: the majority of content remains independently selected, while a limited proportion of the feed becomes available for paid brand features.</p><p className="mt-7 font-display text-[clamp(2rem,3.2vw,3.4rem)] uppercase leading-[0.86] tracking-[-0.03em]">80% EDITORIAL<br />20% BRAND FEATURES</p><p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-wind-white/55">STRATEGIC PROPOSAL · NOT AN IMPLEMENTED RESULT</p></>],
+    ['04 — THE OFFER',
+      <><p className="font-display text-[clamp(2rem,3.5vw,3.7rem)] uppercase leading-[0.84] tracking-[-0.03em]">TURN A SINGLE POST INTO A MEDIA PRODUCT.</p><p className="mt-7 font-display text-[clamp(1.7rem,3vw,3rem)] uppercase leading-[0.88] tracking-[-0.02em]">INSTAGRAM<br />+<br />SHOP DIRECTORY<br />+<br />NEWSLETTER</p><p className="mt-7">Rather than charging brands simply to appear on Instagram, I developed a proposition that combined multiple DEORON touchpoints.</p></>],
+    ['05 — THE COMMERCIAL MODEL',
+      <><p className="font-display text-[clamp(2rem,3.5vw,3.7rem)] uppercase leading-[0.84] tracking-[-0.03em]">ONE-OFF PLACEMENT<br />→ PACKAGED FEATURE<br />→ RECURRING PARTNERSHIP</p><p className="mt-7 font-display text-[clamp(1.7rem,3vw,3rem)] uppercase leading-[0.88] tracking-[-0.02em]">FEATURES · PACKAGES · RETAINERS</p></>],
+    ['06 — THE VALUE LAYER',
+      <><p className="font-display text-[clamp(2rem,3.5vw,3.7rem)] uppercase leading-[0.84] tracking-[-0.03em]">THE POST IS ONLY THE BEGINNING.</p><div className="mt-7 grid grid-cols-2 gap-x-5 gap-y-3 border-y border-wind-white/25 py-6 text-[11px] font-bold uppercase tracking-[0.16em] md:grid-cols-3">{['LICENSING','WHITELISTING','EXCLUSIVITY','DESIGN WEEK PRIORITY','DIRECTORY PLACEMENT','FAST TURNAROUND'].map((item) => <span key={item}>{item}</span>)}</div><p className="mt-7">I identified additional commercial opportunities around the core placement, creating additional revenue layers without requiring DEORON to increase the volume of sponsored content.</p></>],
+    ['07 — THE ECOSYSTEM',
+      <><p className="font-display text-[clamp(2rem,3.5vw,3.7rem)] uppercase leading-[0.84] tracking-[-0.03em]">DEORON COULD BECOME MORE THAN A FEED.</p><p className="mt-7 font-display text-[clamp(1.6rem,2.7vw,2.8rem)] uppercase leading-[0.9] tracking-[-0.02em]">INSTAGRAM<br />→ DIRECTORY<br />→ NEWSLETTER<br />→ EDITORIAL GUIDES<br />→ DESIGN WEEK EDITIONS<br />→ PRODUCT DROPS</p></>],
+    ['08 — THE OPPORTUNITY AHEAD',
+      <><p className="font-display text-[clamp(1.9rem,3.2vw,3.4rem)] uppercase leading-[0.86] tracking-[-0.03em]">EXISTING AUDIENCE<br />→ EDITORIAL AUTHORITY<br />→ SCARCE ACCESS<br />→ RECURRING REVENUE</p><p className="mt-7">The strategy was ultimately about changing what DEORON was selling.</p><p className="mt-5 font-display text-[clamp(2rem,3.2vw,3.2rem)] uppercase leading-[0.86] tracking-[-0.03em]">Not reach alone.<br /><br />TASTE.<br />CURATION.<br />ACCESS.</p><div className="mt-8 border-y border-wind-white/25 py-6"><p className="text-[10px] font-bold uppercase tracking-[0.22em] text-wind-white/70">STATUS</p><p className="mt-4 font-display text-[clamp(1.8rem,3vw,3rem)] uppercase leading-[0.86] tracking-[-0.03em]">STRATEGIC PROPOSAL<br />PRESENTED TO DEORON'S FOUNDER<br />2026</p><p className="mt-4 text-[11px] font-bold uppercase tracking-[0.18em]">NOT YET IMPLEMENTED</p></div></>],
+  ];
+
+  const exhibitionSections = [
+    ['01 — THE EVENT',
+      <><p>DEORON brought its curatorial world into a physical space for the first time in Berlin — taking over Monopol during Berlin Art Week and turning a former industrial building into a temporary home for design, sound and gathering.</p><p className="mt-7 font-display text-[clamp(1.9rem,3.2vw,3.2rem)] uppercase leading-[0.88] tracking-[-0.025em]">DESIGN<br />+<br />SOUND<br />+<br />PEOPLE<br />+<br />PLACE</p></>],
+    ['02 — MY ROLE',
+      <><p className="font-display text-[clamp(1.8rem,3vw,3.1rem)] uppercase leading-[0.86] tracking-[-0.03em]">I JOINED DEORON AS AN EVENT MANAGER ACROSS THE EXHIBITION — HELPING TAKE THE EXPERIENCE FROM INSTALLATION TO FINAL BREAKDOWN.</p><div className="mt-7 grid grid-cols-2 gap-x-5 gap-y-3 border-y border-wind-white/25 py-6 text-[11px] font-bold uppercase tracking-[0.16em] md:grid-cols-3">{['SET-UP','DESIGNER SUPPORT','GUEST EXPERIENCE','GUIDED TOURS','EVENT OPERATIONS'].map((item) => <span key={item}>{item}</span>)}</div></>],
+    ['03 — THE SPACE',
+      <><p className="font-display text-[clamp(1.8rem,3vw,3.1rem)] uppercase leading-[0.86] tracking-[-0.03em]">THE CHALLENGE WAS MAKING A LARGE, INDUSTRIAL ENVIRONMENT FEEL COHERENT, WELCOMING AND ALIVE — WITHOUT LOSING THE RAWNESS OF THE BUILDING.</p><p className="mt-7">I helped prepare the exhibition, install and position elements, support the presentation of designers' work and make sure the space was ready to move between daytime visits, tours, talks and evening programming.</p></>],
+    ['04 — THE EXPERIENCE',
+      <><p className="font-display text-[clamp(1.8rem,3vw,3.1rem)] uppercase leading-[0.86] tracking-[-0.03em]">A BIG PART OF THE JOB WAS MAKING THE EXHIBITION UNDERSTANDABLE WITHOUT MAKING IT FEEL OVERLY EXPLAINED.</p><p className="mt-7">I spoke with guests about the designers and objects, answered questions, gave guided tours and helped people navigate the exhibition — translating DEORON's point of view into a physical experience.</p><p className="mt-7 font-display text-[clamp(1.6rem,2.7vw,2.8rem)] uppercase leading-[0.9] tracking-[-0.02em]">WHO MADE IT · WHY IT MATTERS · WHAT TO LOOK AT · WHERE TO GO NEXT</p></>],
+    ['05 — BEHIND THE SCENES',
+      <><p className="font-display text-[clamp(1.8rem,3vw,3.1rem)] uppercase leading-[0.86] tracking-[-0.03em]">THE POLISHED EXHIBITION WAS ONLY ONE HALF OF THE JOB.</p><p className="mt-7">I worked directly with designers and exhibitors throughout the event, helping with practical needs, troubleshooting issues, coordinating the moving parts of the day and making sure the programme continued to run smoothly.</p><p className="mt-5">From installation and last-minute adjustments to guest arrivals and breakdown, the role required staying close to the detail while keeping an eye on the experience as a whole.</p></>],
+    ['06 — DEORON IN MOTION',
+      <><p className="font-display text-[clamp(1.8rem,3vw,3.1rem)] uppercase leading-[0.86] tracking-[-0.03em]">THE OBJECTS WEREN'T TREATED AS STATIC THINGS TO LOOK AT. THEY BECAME PART OF A SOCIAL, SENSORY ENVIRONMENT.</p><p className="mt-7">Sound systems filled the space. People gathered, sat, listened and talked. Designers were present. Guests moved between objects, conversations and events.</p><p className="mt-7 font-display text-[clamp(1.9rem,3vw,3.1rem)] uppercase leading-[0.88] tracking-[-0.025em]">A SHOWROOM<br />→<br />A GATHERING PLACE</p></>],
+    ['07 — THE TAKEAWAY',
+      <><p className="font-display text-[clamp(1.8rem,3vw,3.1rem)] uppercase leading-[0.86] tracking-[-0.03em]">MY ROLE WAS ULTIMATELY ABOUT KEEPING THE EXPERIENCE MOVING — FROM THE PHYSICAL INSTALLATION TO THE WAY PEOPLE ENCOUNTERED THE WORK.</p><p className="mt-7 font-display text-[clamp(1.6rem,2.7vw,2.8rem)] uppercase leading-[0.9] tracking-[-0.02em]">INSTALL · HOST · EXPLAIN · SOLVE · CONNECT · RESET</p></>],
+  ];
+
+  const renderSection = ([label, content]) => (
+    <section key={label} className="border-t border-wind-white/25 pt-6">
+      <h5 className="mb-7 font-display text-[clamp(2.4rem,5vw,5rem)] uppercase leading-[0.86] tracking-[-0.03em] text-wind-orange" style={{ textShadow: '3px 3px 0 rgba(255,255,255,0.5)' }}>{label}</h5>
+      <div className="font-poppins text-[18px] leading-[1.45] md:text-[21px]">{content}</div>
+    </section>
+  );
+
+  return (
+    <>
+      <div className="deoron-project-content grid gap-10 md:grid-cols-12 md:items-start">
+      <div className="md:col-span-7 md:col-start-1">
+        <div className="border-y border-wind-white/25 py-8">
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-wind-white/70">DEORON · REFRAMING THE FEED / BERLIN EXHIBITION</p>
+          <p className="mt-3 font-poppins text-[13px] font-bold uppercase tracking-[0.18em] text-wind-white/70">{project.secondaryTitle}</p>
+          <p className="mt-6 font-poppins text-[19px] leading-[1.45] md:text-[21px]">{project.intro}</p>
+        </div>
+        <div className="mt-12 space-y-14">{strategySections.map(renderSection)}</div>
+      </div>
+
+      <aside className="md:col-span-4 md:col-start-9">
+        <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.22em] text-wind-white/70">ACTUAL STRATEGIC PROPOSAL · 2026</p>
+        <a href={project.link} target="_blank" rel="noreferrer" className="group block overflow-hidden border border-wind-black bg-wind-white">
+          <img src={project.image} alt={project.imageAlt} className="block h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" loading="lazy" />
+          <div className="flex items-center justify-between border-t border-wind-black bg-wind-white px-4 py-3 text-[10px] font-medium uppercase tracking-[0.2em] text-wind-black">
+            <span>Open full deck</span><ArrowUpRight className="h-3 w-3" strokeWidth={1.5} />
+          </div>
+        </a>
+        <p className="mt-5 max-w-sm font-poppins text-[16px] leading-[1.45] text-wind-white/80">The original strategic proposal opens as a PDF. The portfolio page carries the strategic context; the deck is the complete project material.</p>
+      </aside>
+
+      <div className="md:col-span-12 mt-12 flex flex-col items-center border-y border-wind-white/40 px-4 py-16 text-center md:mt-20 md:px-8 md:py-24">
+        <p className="text-[14px] font-black uppercase tracking-[0.28em] text-wind-white/70 md:text-[17px]">DEORON — BERLIN EXHIBITION</p>
+        <p className="mt-8 max-w-[1400px] font-display text-[clamp(6rem,11vw,13rem)] font-black uppercase leading-[0.76] tracking-[-0.06em] text-wind-orange" style={{ textShadow: '6px 6px 0 rgba(255,255,255,0.5)' }}>FROM DIGITAL PLATFORM<br />TO PHYSICAL EXPERIENCE.</p>
+        <p className="mt-10 max-w-5xl font-poppins text-[20px] leading-[1.45] md:text-[23px]">I worked with DEORON across its Berlin exhibition, supporting the project from setup through breakdown. Working across event production, designer liaison and guest experience, I helped bring DEORON's digital world into a physical space — supporting exhibitors, guiding guests and keeping the exhibition running smoothly throughout.</p>
+      </div>
+
+      <div className="md:col-span-6 md:col-start-1 space-y-14">{exhibitionSections.map(renderSection)}
+        <section className="border-y border-wind-white/25 py-8">
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-wind-white/70">STATUS</p>
+          <p className="mt-5 font-display text-[clamp(2rem,3.5vw,3.5rem)] uppercase leading-[0.84] tracking-[-0.03em] text-wind-orange" style={{ textShadow: '3px 3px 0 rgba(255,255,255,0.5)' }}>EXECUTED<br />DEORON BERLIN EXHIBITION<br />2026</p>
+          <p className="mt-4 font-poppins text-[18px] font-bold uppercase tracking-[0.08em]">MONOPOL, BERLIN</p>
+          <p className="mt-6 text-[11px] font-bold uppercase leading-[1.6] tracking-[0.18em]">EVENT MANAGEMENT · PRODUCTION · GUEST EXPERIENCE · DESIGNER LIAISON · GUIDED TOURS</p>
+        </section>
+      </div>
+
+      <aside className="md:col-span-6 md:col-start-7">
+        <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.22em] text-wind-white/70">DEORON BERLIN · EXECUTED EVENT WORK</p>
+        <p className="mb-4 font-poppins text-[16px] font-bold leading-[1.35] text-wind-white">Click any image to view it larger.</p>
+        <div className="deoron-exhibition-grid grid">
+          {exhibitionImages.map((image, index) => (
+            <button
+              key={image.src}
+              type="button"
+              onClick={() => setLightboxIndex(index)}
+              className="group block w-full cursor-zoom-in overflow-hidden border-0 bg-transparent p-0 text-left"
+              aria-label={`Enlarge ${image.alt}`}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.015]"
+              />
+            </button>
+          ))}
+        </div>
+      </aside>
+      </div>
+
+      {lightboxImage && (
+      <div
+        className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 md:p-8"
+        role="dialog"
+        aria-modal="true"
+        aria-label={lightboxImage.alt}
+        onClick={() => setLightboxIndex(null)}
+      >
+        <button
+          type="button"
+          onClick={() => setLightboxIndex(null)}
+          className="absolute right-4 top-4 z-10 border border-white/70 bg-black/30 px-4 py-2 font-poppins text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-white hover:text-black md:right-8 md:top-8"
+          aria-label="Close enlarged image"
+        >
+          Close ×
+        </button>
+        <div className="flex max-h-[92vh] max-w-[94vw] items-center justify-center" onClick={(event) => event.stopPropagation()}>
+          <img
+            src={lightboxImage.src}
+            alt={lightboxImage.alt}
+            className="max-h-[92vh] max-w-[94vw] object-contain"
+          />
+        </div>
+      </div>
+      )}
+    </>
+  );
+}
+
 function DroidconProject({ project }) {
   const stats = [
     ['3', 'INTERNATIONAL BRANDS'],
@@ -763,6 +946,7 @@ function ProjectVisual({ project }) {
   if (project.berliner) return null;
   if (project.zalando) return <ZalandoProjectVisual project={project} />;
   if (project.crush) return <CrushProjectVisual project={project} />;
+  if (project.deoron) return null;
 
   if (project.image) {
     return (
@@ -798,7 +982,7 @@ function ProjectVisual({ project }) {
 
 function WorkCard({ project, expanded, onToggle }) {
   return (
-    <article className="border-t border-wind-white/35 pt-6">
+    <article id={project.slug ? `work-${project.slug}` : undefined} className="border-t border-wind-white/35 pt-6">
       <button type="button" onClick={onToggle} aria-expanded={expanded} className="group block w-full text-left">
         <div className="grid gap-8 md:grid-cols-12 md:items-start">
           <div className="md:col-span-1">
@@ -812,7 +996,7 @@ function WorkCard({ project, expanded, onToggle }) {
           <div className="md:col-span-4 md:col-start-9">
             <p className="max-w-md font-poppins text-[19px] leading-[1.38] text-wind-white md:text-[21px]">{project.intro}</p>
             <span className="mt-6 inline-flex items-center gap-2 border-b border-wind-white/60 pb-1 text-[12px] font-medium uppercase tracking-[0.25em] text-wind-white">
-              {expanded ? (project.nextApp || project.droidcon ? 'CLOSE PROJECT ×' : project.crush || project.berliner ? 'CLOSE EDITORIAL WORK ×' : project.berlinBites ? 'CLOSE PROPOSAL ×' : 'Close case study') : (project.title === 'ZALANDO' ? 'Read case study' : 'Read more')} <Plus className={`h-4 w-4 transition-transform ${expanded ? 'rotate-45' : ''}`} strokeWidth={1.5} />
+              {expanded ? (project.nextApp || project.droidcon ? 'CLOSE PROJECT ×' : project.crush || project.berliner ? 'CLOSE EDITORIAL WORK ×' : project.berlinBites ? 'CLOSE PROPOSAL ×' : project.deoron ? 'CLOSE PROJECT ×' : 'Close case study') : (project.title === 'ZALANDO' ? 'Read case study' : 'Read more')} <Plus className={`h-4 w-4 transition-transform ${expanded ? 'rotate-45' : ''}`} strokeWidth={1.5} />
             </span>
           </div>
         </div>
@@ -831,6 +1015,10 @@ function WorkCard({ project, expanded, onToggle }) {
           ) : project.droidcon ? (
             <div className="md:col-span-11 md:col-start-2">
               <DroidconProject project={project} />
+            </div>
+          ) : project.deoron ? (
+            <div className="md:col-span-11 md:col-start-2">
+              <DeoronProject project={project} />
             </div>
           ) : project.zalando ? (
             <div className="md:col-span-11 md:col-start-2">
@@ -1154,6 +1342,40 @@ function Work() {
         .zalando-project-content [class*="text-[10px]"] {
           font-size: 14px !important;
         }
+        .deoron-project-content [class*="text-[10px]"] {
+          font-size: 14px !important;
+        }
+        .deoron-project-content [class*="text-[11px]"] {
+          font-size: 14px !important;
+        }
+        .deoron-project-content section > div .font-display {
+          font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+          font-size: clamp(22px, 1.8vw, 30px) !important;
+          font-weight: 700 !important;
+          line-height: 1.22 !important;
+          letter-spacing: 0.06em !important;
+        }
+        .deoron-exhibition-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 10px;
+          align-items: start;
+        }
+        .deoron-exhibition-grid button {
+          min-width: 0;
+        }
+        .deoron-exhibition-grid img {
+          display: block;
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+          object-fit: contain;
+          object-position: center;
+        }
+        @media (max-width: 767px) {
+          .deoron-exhibition-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
       `}</style>
       <section id="work" className="bg-wind-blue px-5 pb-28 pt-16 text-wind-white md:px-10 md:pb-40 md:pt-20">
       <Reveal>
@@ -1178,7 +1400,7 @@ function Work() {
       <div className="mt-12 space-y-7 text-wind-white">
         {visible.map((project) => (
           <Reveal key={project.title} delay={0.03}>
-            <WorkCard project={project} expanded={open === project.title} onToggle={() => setOpen(open === project.title ? '' : project.title)} />
+            <WorkCard project={project} expanded={open === project.title} onToggle={() => setOpen((current) => current === project.title ? '' : project.title)} />
           </Reveal>
         ))}
       </div>
@@ -1257,12 +1479,12 @@ function Capabilities() {
 
 function Now() {
   return (
-    <section className="relative overflow-hidden bg-wind-black text-wind-white md:min-h-[900px]" style={{ minHeight: '900px' }}>
+    <section className="relative overflow-hidden bg-[#780606] text-wind-white md:min-h-[900px]" style={{ minHeight: '900px' }}>
       <div className="relative mx-auto h-full min-h-[900px] max-w-[1584px] px-5 py-8 md:px-16 md:py-0">
         <p className="absolute left-5 top-8 text-[18px] font-black uppercase tracking-[0.22em] text-wind-white md:left-16 md:top-[52px]">04 — Now</p>
 
         <div className="pt-[100px] md:absolute md:left-[2.5%] md:top-[195px] md:pt-0">
-          <div className="absolute -left-0 -top-0 h-[498px] w-[685px] bg-[#780606]" />
+          <div className="absolute -left-0 -top-0 h-[498px] w-[685px] bg-[#0914AF]" />
           <div className="relative z-10 ml-[38px] mt-[65px] h-[445px] w-[667px] overflow-hidden">
             <img src="/images/now.jpg" alt="Katrina Rose Wind in conversation at an event" className="h-full w-full object-cover" loading="lazy" />
           </div>
@@ -1310,6 +1532,7 @@ function Contact() {
             </div>
           </div>
         </div>
+
         <div className="mt-12 md:absolute md:right-[4%] md:top-[390px] md:mt-0">
           <div className="absolute left-[60px] -top-[32px] h-full w-[96.6%] bg-[#780606]" />
           <div className="absolute left-[32px] top-[18px] h-full w-[calc(100%+32px)] bg-wind-white" />
@@ -1372,6 +1595,13 @@ function HomePage() {
         <meta name="description" content="Katrina Rose Wind builds ideas, campaigns and experiences that make brands matter — across brand marketing, creative strategy, storytelling, culture and experiences from Berlin." />
       </Helmet>
       <Seo title="Katrina Rose Wind — Marketing · Creative · Culture" description="Brand marketing, creative strategy and storytelling across culture, food, hospitality, design and lifestyle." siteName="Katrina Rose Wind" url="https://katrinarosewind.com" type="website" />
+      <style>{`
+        @media (pointer: fine) {
+          html, body, a, button, [role="button"] {
+            cursor: url("/cursor-deoron.png") 13 1, auto !important;
+          }
+        }
+      `}</style>
       <Header />
       <main>
         <Hero />
