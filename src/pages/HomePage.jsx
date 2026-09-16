@@ -663,7 +663,7 @@ function DeoronProject({ project }) {
       <div className="md:col-span-12 mt-12 flex flex-col items-center border-y border-wind-white/40 px-4 py-16 text-center md:mt-20 md:px-8 md:py-24">
         <p className="text-[14px] font-black uppercase tracking-[0.28em] text-wind-white/70 md:text-[17px]">DEORON — BERLIN EXHIBITION</p>
         <p className="mt-8 max-w-[1400px] font-display text-[clamp(6rem,11vw,13rem)] font-black uppercase leading-[0.76] tracking-[-0.06em] text-wind-orange" style={{ textShadow: '6px 6px 0 rgba(255,255,255,0.5)' }}>FROM DIGITAL PLATFORM<br />TO PHYSICAL EXPERIENCE.</p>
-        <p className="mt-10 max-w-5xl font-poppins text-[20px] leading-[1.45] md:text-[23px]">I worked with DEORON across its Berlin exhibition, supporting the project from setup through breakdown. Working across event production, designer liaison and guest experience, I helped bring DEORON's digital world into a physical space — supporting exhibitors, guiding guests and keeping the exhibition running smoothly throughout.</p>
+        <p className="mt-10 max-w-5xl font-poppins text-[20px] leading-[1.45] md:text-[23px]">I worked with <a href="https://www.instagram.com/deoron/?hl=en" target="_blank" rel="noopener noreferrer" className="underline decoration-1 underline-offset-4 transition-colors hover:text-wind-orange">DEORON</a> on its Berlin exhibition during Design Week, held at Monopol from September 9–13, 2026, supporting the project from setup through breakdown. Working across event production, designer liaison and guest experience, I helped bring DEORON’s digital world into a physical space, supporting exhibitors, welcoming and guiding guests, and helping keep the exhibition running smoothly throughout.</p>
       </div>
 
       <div className="md:col-span-6 md:col-start-1 space-y-14">{exhibitionSections.map(renderSection)}
@@ -1223,7 +1223,7 @@ function FolderFilter({ label, active, onClick }) {
 
 function Work() {
   const [filter, setFilter] = useState('ALL');
-  const [open, setOpen] = useState('NEXT.APP');
+  const [open, setOpen] = useState('');
   const visible = useMemo(() => filter === 'ALL' ? PROJECTS : PROJECTS.filter((project) => project.tags.includes(filter)), [filter]);
 
   return (
