@@ -32,7 +32,7 @@ const PROJECTS = [
     intro: 'Writing original food and culture stories for The Berliner — researching ideas, finding the angle, interviewing people shaping Berlin’s food scene and turning cultural observations into editorial for print.',
     detail: 'The Berliner is where my editorial instinct meets cultural research — finding the story behind what is happening in Berlin’s food and hospitality scene, rather than simply reporting what opened or what is trending.',
     berliner: true,
-    note: 'TWO PRINT FEATURES · THE BERLINER',
+    note: 'PRINT & DIGITAL FEATURES · THE BERLINER',
     link: '/work/berliner-pages.pdf',
   },  {
     n: '03',
