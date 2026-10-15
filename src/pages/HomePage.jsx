@@ -360,7 +360,45 @@ function NextAppProjectContent({ project }) {
 }
 
 function BerlinerProject({ project }) {
+  const [expandedPage, setExpandedPage] = useState(null);
+
+  useEffect(() => {
+    if (!expandedPage) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setExpandedPage(null);
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        setExpandedPage((current) => current && ({
+          ...current,
+          index: Math.min(current.index + 1, current.pages.length - 1),
+        }));
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        setExpandedPage((current) => current && ({
+          ...current,
+          index: Math.max(current.index - 1, 0),
+        }));
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [expandedPage]);
+
+  const getPageInfo = (page) => {
+    const src = typeof page === 'number' ? `/work/berliner/page-${page}.jpg` : `/work/berliner/${page}`;
+    const pageNumber = typeof page === 'number' ? page : (page.match(/page-(\d+)/)?.[1] || '');
+    return { src, alt: `The Berliner printed page ${pageNumber}` };
+  };
+
   const stories = [
+    {
+      title: 'A FERMENTATION FASCINATION',
+      meta: 'THE BERLINER 253 · PRINT · 2026 · P. 12–13',
+      angle: 'A portrait of Ukrainian-born food designer, sociologist and educator Olya Tarasyeyeva, exploring fermentation as a practice of patience, collaboration and letting go of control — and what happens when you allow living things to do their work.',
+      role: 'REPORTING · INTERVIEW · FOOD CULTURE · PROFILE WRITING',
+      pages: ['a-fermentation-fascination-page-12.jpg', 'a-fermentation-fascination-page-13.jpg'],
+    },
     {
       title: 'DID SOCIAL MEDIA KILL THE RESTAURANT CRITIC?',
       meta: 'THE BERLINER 252 · PRINT · 2026 · P. 12–13',
@@ -409,9 +447,14 @@ function BerlinerProject({ project }) {
               <div className="md:col-span-8">
                 <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.22em] text-wind-white/55">ON THE PAGE</p>
                 <div className="grid gap-3 md:grid-cols-2">
-                  {story.pages.map((page) => (
-                    <img key={page} src={`/work/berliner/page-${page}.jpg`} alt={`The Berliner printed page ${page}`} className="block h-auto w-full object-contain" loading="lazy" />
-                  ))}
+                  {story.pages.map((page) => {
+                    const { src, alt } = getPageInfo(page);
+                    return (
+                      <button key={page} type="button" onClick={() => setExpandedPage({ pages: story.pages.map(getPageInfo), index: story.pages.indexOf(page) })} aria-label={`Enlarge ${alt}`} className="group block w-full cursor-zoom-in text-left">
+                        <img src={src} alt={alt} className="block h-auto w-full object-contain transition-opacity duration-200 group-hover:opacity-90" loading="lazy" />
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </article>
@@ -424,6 +467,13 @@ function BerlinerProject({ project }) {
           THE SAME INSTINCT I BRING TO BRANDS:<br className="hidden md:block" /> FIND THE THING PEOPLE WILL CARE ABOUT — THEN TELL IT WELL.
         </p>
       </div>
+
+      {expandedPage && (
+        <div role="dialog" aria-modal="true" aria-label={expandedPage.pages[expandedPage.index].alt} onClick={() => setExpandedPage(null)} className="fixed inset-0 z-[100] flex cursor-zoom-out items-center justify-center bg-black/95 p-4 md:p-8">
+          <button type="button" onClick={() => setExpandedPage(null)} aria-label="Close enlarged page" className="absolute right-5 top-5 z-[101] border border-white/40 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white">Close ×</button>
+          <img src={expandedPage.pages[expandedPage.index].src} alt={expandedPage.pages[expandedPage.index].alt} onClick={(event) => event.stopPropagation()} className="max-h-[90vh] max-w-full cursor-default object-contain" />
+        </div>
+      )}
     </div>
   );
 }
